@@ -34,50 +34,50 @@ string printZigzagMatrix(const vector<vector<string>>& matrix) {
 }
 
 string concatPairsThenImpairs(const string& input) {
+    string result = "";
     string pairs = "", impairs = "";
+
     for (size_t i = 0; i < input.length(); ++i) {
         if (i % 2 == 0)
             pairs += input[i];
         else
             impairs += input[i];
     }
-    return pairs + impairs;
+
+    result = pairs + impairs;
+    return result;
 }
 
 class Solution {
 public:
     string convert(string s, int numRows) {
-        if (numRows == 1) return s;
-        if (numRows == 2) return concatPairsThenImpairs(s);
-
-        // Enough columns to fit the zigzag
-        vector<vector<char>> matrix(numRows, vector<char>(s.size(), '\0'));
-        int i = 0, j = 0;
-        size_t idx = 0;
-
-        while (idx < s.size()) {
-            // Go down
-            for (int row = 0; row < numRows && idx < s.size(); ++row) {
-                matrix[row][j] = s[idx++];
-            }
-            // Go up diagonally
-            for (int row = numRows - 2; row >= 1 && idx < s.size(); --row) {
-                ++j;
-                matrix[row][j] = s[idx++];
-            }
-            ++j;
+        if (numRows == 1) {
+            return s;
+        }
+        if (numRows == 2) {
+            return concatPairsThenImpairs(s);
         }
 
-        // Read matrix row-wise
-        string result = "";
-        for (int row = 0; row < numRows; ++row) {
-            for (int col = 0; col < s.size(); ++col) {
-                if (matrix[row][col] != '\0') {
-                    result += matrix[row][col];
-                }
+        vector<vector<string>> matrix(numRows, vector<string>(s.size(), ""));
+        int counter = 0;
+        int c = 0;
+
+        while (counter < s.size()) {
+            // Going down
+            for (int k = 0; k < numRows && counter < s.size(); ++k) {
+                matrix[k][c] = string(1, s[counter]);
+                counter++;
             }
+
+            // Going up diagonally
+            for (int k = numRows - 2; k >= 1 && counter < s.size(); --k) {
+                c++;
+                matrix[k][c] = string(1, s[counter]);
+                counter++;
+            }
+            c+=numRows-1;
         }
 
-        return result;
+        return printZigzagMatrix(matrix);
     }
 };
