@@ -21,6 +21,6 @@ public:
             current = nextTemp;                   
         }
 
-        return prev; // prev est la nouvelle tête (l'ancien dernier élément)
+        return prev; 
     }
 };
