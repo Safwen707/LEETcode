@@ -13,6 +13,7 @@ def dfs(root):
 class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
         numbers=dfs(root)
+        print(numbers)
         l=[k for k in numbers if k in range(low,high+1)]
         return sum(l)
 
