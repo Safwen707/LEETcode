@@ -19,7 +19,7 @@ def dfs(root1,root2):
 
 class Solution:
     def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
-        result=TreeNode()
+        
         return dfs(root1,root2)
 
 
