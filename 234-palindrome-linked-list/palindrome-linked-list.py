@@ -11,12 +11,12 @@ class Solution:
             stack.append(curr.val)
             curr=curr.next
         test=True
-        while test and len(stack):
+        while stack:
             if stack.pop()!=head.val:
-                test=False
+                return False
                 
             head=head.next
-        return test
+        return True
 
 
         
