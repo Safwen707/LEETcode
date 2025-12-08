@@ -11,7 +11,7 @@ class Solution:
             stack.append(curr.val)
             curr=curr.next
         test=True
-        while stack:
+        while len(stack):
             if stack.pop()!=head.val:
                 return False
                 
